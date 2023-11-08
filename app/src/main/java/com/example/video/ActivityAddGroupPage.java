@@ -36,6 +36,7 @@ import androidx.core.content.ContextCompat;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class ActivityAddGroupPage extends AppCompatActivity {
 
@@ -135,13 +136,14 @@ public class ActivityAddGroupPage extends AppCompatActivity {
             TextView groupResultTextView = findViewById(R.id.groupResult);
             InputStream inputStream = getContentResolver().openInputStream(fileUri);
             if (inputStream != null) {
-                StringBuilder stringBuilder = new StringBuilder();
+                InputStreamReader reader = new InputStreamReader(inputStream, "UTF-8");
                 int content;
-                while ((content = inputStream.read()) != -1) {
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((content = reader.read()) != -1) {
                     stringBuilder.append((char) content);
                 }
                 inputStream.close();
-                 fileContent = stringBuilder.toString();
+                fileContent = stringBuilder.toString();
                 getFileNameFromUri(fileUri);
                 groupResultTextView.setText("result"+fileContent);
                 long groupId = databaseHelper.insertGroup(fileName);

@@ -1,0 +1,7 @@
+<resources>
+    <string  name="app_name">video</string>
+    <string  name="item1">Главная</string>
+    <string name="item2">Добавить новую группу</string>
+    <string name="item3">Страница удаления групп</string>
+
+</resources>

@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -15,7 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -28,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
@@ -41,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int STORAGE_PERMISSION_CODE = 100;
     private static final String TAG = "PERMISSION_TAG";
 
+    Switch switcher ;
+    boolean nightMODE;
+    SharedPreferences sharedPreferences;
+
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +69,34 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        switcher = findViewById(R.id.switch1);
+        sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        nightMODE = sharedPreferences.getBoolean("night", false);
+        if (nightMODE) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            switcher.setChecked(true);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            switcher.setChecked(false);
+        }
+
+        switcher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (nightMODE) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    nightMODE = false;
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    nightMODE = true;
+                }
+
+                editor = sharedPreferences.edit();
+                editor.putBoolean("night", nightMODE);
+                editor.apply(); // Применить изменения
+            }
+        });
 
 
     }

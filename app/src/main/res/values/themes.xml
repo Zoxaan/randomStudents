@@ -6,4 +6,20 @@
     </style>
 
     <style name="Theme.Video" parent="Base.Theme.Video" />
+    <!---Lite mode-->
+    <style name="SCREEN">
+        <item name="android:background">#FFF</item>
+    </style>
+
+
+    <!---text mode-->
+    <style name="TEXT">
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <!---BUTTON mode-->
+    <style name="BUTTON">
+        <item name="android:background">@android:color/holo_blue_dark</item>
+        <item name="android:textColor">#FFF</item>
+    </style>
 </resources>

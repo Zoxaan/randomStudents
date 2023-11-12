@@ -3,6 +3,7 @@
     <style name="Base.Theme.Video" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:windowFullscreen">true</item>
     </style>
     <!---DARK mode-->
     <style name="SCREEN">
@@ -10,14 +11,19 @@
     </style>
 
 
+
     <!---text DARK mode-->
     <style name="TEXT">
         <item name="android:textColor">#FFFF</item>
     </style>
 
+    <style name="FON">
+        <item name="android:background">@drawable/temn</item>
+    </style>
+
+
     <!---BUTTON DARK mode-->
     <style name="BUTTON">
-        <item name="android:background">#B9BABA</item>
         <item name="android:textColor">#000000</item>
     </style>
 </resources>

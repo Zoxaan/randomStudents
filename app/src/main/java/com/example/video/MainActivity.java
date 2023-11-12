@@ -30,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        int darkToolbarColor = getResources().getColor(R.color.dark_toolbar_color);
+        int lightToolbarColor = getResources().getColor(R.color.light_toolbar_color);
 
         MyAdapter adapter = new MyAdapter(this);
 
@@ -75,33 +77,53 @@ public class MainActivity extends AppCompatActivity {
         nightMODE = sharedPreferences.getBoolean("night", false);
         if (nightMODE) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
             switcher.setChecked(true);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
             switcher.setChecked(false);
         }
 
-        switcher.setOnClickListener(new View.OnClickListener() {
+        switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (nightMODE) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    nightMODE = false;
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    nightMODE = true;
-                }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked != nightMODE) { // Проверяем, изменилось ли состояние
+                    nightMODE = isChecked; // Обновляем переменную состояния
 
-                editor = sharedPreferences.edit();
-                editor.putBoolean("night", nightMODE);
-                editor.apply(); // Применить изменения
+                    if (isChecked) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        toolbar.setBackgroundColor(darkToolbarColor); // Устанавливаем цвет для темной темы
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        toolbar.setBackgroundColor(lightToolbarColor); // Устанавливаем цвет для светлой темы
+                    }
+
+                    // Применяем изменения в SharedPreferences
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean("night", nightMODE);
+                    editor.apply();
+                }
             }
         });
-
 
     }
 
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        int darkToolbarColor = getResources().getColor(R.color.dark_toolbar_color);
+        int lightToolbarColor = getResources().getColor(R.color.light_toolbar_color);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            toolbar.setBackgroundColor(darkToolbarColor); // Устанавливаем цвет для темной темы
+        } else {
+            toolbar.setBackgroundColor(lightToolbarColor); // Устанавливаем цвет для светлой темы
+        }
+
+        return super.onPrepareOptionsMenu(menu);
+    }
 
 
 

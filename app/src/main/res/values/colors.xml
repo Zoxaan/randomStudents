@@ -2,6 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<<<<<<< HEAD
     <color name="dark_toolbar_color">#EA0000</color>
     <color name="light_toolbar_color">#8E24AA</color>
+=======
+
+>>>>>>> 432fa295e1f3da6ff60947dab5f017cd9db04c87
 </resources>

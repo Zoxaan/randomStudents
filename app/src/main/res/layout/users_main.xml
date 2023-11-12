@@ -4,17 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
+    <ImageView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        style="@style/FON"/>
     <androidx.appcompat.widget.Toolbar
+        android:fontFamily="@font/asdsad"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Info" />
+        app:title="Информация о группе" />
+
 
     <TextView
+        android:fontFamily="@font/asdsad"
         android:id="@+id/users"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,33 +27,37 @@
         android:layout_marginTop="62dp"
         android:layout_marginEnd="312dp"
         android:layout_marginBottom="586dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-
     <Button
+        style="@style/TEXT"
+        android:textStyle="bold"
+        android:background="@drawable/back"
+        android:fontFamily="@font/asdsad"
         android:id="@+id/button"
-        android:layout_width="468dp"
+        android:layout_width="350dp"
         android:layout_height="110dp"
-        android:layout_marginBottom="192dp"
-        android:background="?attr/actionModeSplitBackground"
+        android:layout_marginBottom="120dp"
         android:text="Выбрать жертву"
-        android:textColor="#FFFFFF"
-        android:textSize="37dp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <TextView
+        android:textStyle="bold"
+        android:fontFamily="@font/asdsad"
         android:id="@+id/textResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:textColor="#F61010"
-        android:textSize="35sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

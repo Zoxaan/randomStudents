@@ -3,6 +3,7 @@
 
 
     <item
+        android:fontFamily="@font/asdsad"
         android:id="@+id/loadNewGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

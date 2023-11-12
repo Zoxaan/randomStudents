@@ -100,14 +100,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.GroupViewHolder> {
 
         popupMenu.show();
     }
-
-
-
-
-
-
-
-
     @Override
     public int getItemCount() {
         return groupList != null ? groupList.size() : 0;

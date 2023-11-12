@@ -4,11 +4,13 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:fontFamily="@font/asdsad"
         android:id="@+id/studentNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:textSize="16sp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:background="@drawable/line"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

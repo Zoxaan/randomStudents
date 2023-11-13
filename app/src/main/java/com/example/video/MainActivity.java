@@ -30,7 +30,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -59,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        int darkToolbarColor = getResources().getColor(R.color.dark_toolbar_color);
-        int lightToolbarColor = getResources().getColor(R.color.light_toolbar_color);
+
 
         MyAdapter adapter = new MyAdapter(this);
 
@@ -77,53 +75,33 @@ public class MainActivity extends AppCompatActivity {
         nightMODE = sharedPreferences.getBoolean("night", false);
         if (nightMODE) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
             switcher.setChecked(true);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
             switcher.setChecked(false);
         }
 
-        switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switcher.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked != nightMODE) { // Проверяем, изменилось ли состояние
-                    nightMODE = isChecked; // Обновляем переменную состояния
-
-                    if (isChecked) {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                        toolbar.setBackgroundColor(darkToolbarColor); // Устанавливаем цвет для темной темы
-                    } else {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                        toolbar.setBackgroundColor(lightToolbarColor); // Устанавливаем цвет для светлой темы
-                    }
-
-                    // Применяем изменения в SharedPreferences
-                    editor = sharedPreferences.edit();
-                    editor.putBoolean("night", nightMODE);
-                    editor.apply();
+            public void onClick(View v) {
+                if (nightMODE) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    nightMODE = false;
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    nightMODE = true;
                 }
+
+                editor = sharedPreferences.edit();
+                editor.putBoolean("night", nightMODE);
+                editor.apply(); // Применить изменения
             }
         });
 
+
     }
 
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        int darkToolbarColor = getResources().getColor(R.color.dark_toolbar_color);
-        int lightToolbarColor = getResources().getColor(R.color.light_toolbar_color);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            toolbar.setBackgroundColor(darkToolbarColor); // Устанавливаем цвет для темной темы
-        } else {
-            toolbar.setBackgroundColor(lightToolbarColor); // Устанавливаем цвет для светлой темы
-        }
-
-        return super.onPrepareOptionsMenu(menu);
-    }
 
 
 
@@ -159,22 +137,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-            int id = item.getItemId();
+        int id = item.getItemId();
 
-            if (id == R.id.loadNewGroup)
-            {
-                Intent intent = new Intent(this, ActivityAddGroupPage.class);
-                startActivity(intent);
-                return true;
-            }
+        if (id == R.id.loadNewGroup)
+        {
+            Intent intent = new Intent(this, ActivityAddGroupPage.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
 
-        private ActivityResultLauncher<Intent> storageActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult o) {
+    private ActivityResultLauncher<Intent> storageActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult o) {
                     Log.d(TAG,"onActivityResult: ");
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
                     {
@@ -187,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
                     }else {
 
                     }
-            }
-        });
+                }
+            });
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -203,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 if (write&&read)
                 {
                     Log.d(TAG,"Manifest.permission.READ_EXTERNAL_STORAGE");
-                   // createFolder();
+                    // createFolder();
                 }else {
                     Log.d(TAG,"asdadsdsadsa");
                     Toast.makeText(this,"textasdasd",Toast.LENGTH_SHORT).show();

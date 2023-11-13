@@ -19,6 +19,7 @@
 
 
     <TextView
+        android:textSize="16sp"
         android:fontFamily="@font/asdsad"
         android:id="@+id/users"
         android:layout_width="wrap_content"

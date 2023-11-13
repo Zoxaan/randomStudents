@@ -26,9 +26,11 @@
        android:layout_width="match_parent"
        android:layout_height="0dp"
        android:fontFamily="@font/asdsad"
+       app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-       tools:listitem="@layout/button_item"/>
+       tools:listitem="@layout/button_item" />
 
 
    <Switch

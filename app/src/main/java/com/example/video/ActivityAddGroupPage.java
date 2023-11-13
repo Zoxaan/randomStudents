@@ -132,7 +132,7 @@ public class ActivityAddGroupPage extends AppCompatActivity {
 
     private void readFileFromUri(Uri fileUri) {
         try {
-            // Найдите TextView по идентификатору
+
             TextView groupResultTextView = findViewById(R.id.groupResult);
             InputStream inputStream = getContentResolver().openInputStream(fileUri);
             if (inputStream != null) {
@@ -145,9 +145,9 @@ public class ActivityAddGroupPage extends AppCompatActivity {
                 inputStream.close();
                 fileContent = stringBuilder.toString();
                 getFileNameFromUri(fileUri);
-                groupResultTextView.setText("result"+fileContent);
+                groupResultTextView.setText("Студенты:\n"+fileContent);
                 long groupId = databaseHelper.insertGroup(fileName);
-                Toast.makeText(this, "id"+groupId, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Группа добавлена успешно :)", Toast.LENGTH_LONG).show();
                 String[] users = fileContent.split("\n");
                 for (String user : users) {
                     databaseHelper.insertUser(user, (int) groupId);

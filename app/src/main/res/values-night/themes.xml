@@ -25,6 +25,6 @@
     <!---BUTTON DARK mode-->
     <style name="BUTTON">
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:background">#333333</item>
+        <item name="android:backgroundTint">#333333</item>
     </style>
 </resources>

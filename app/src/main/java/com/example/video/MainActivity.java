@@ -137,22 +137,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-            int id = item.getItemId();
+        int id = item.getItemId();
 
-            if (id == R.id.loadNewGroup)
-            {
-                Intent intent = new Intent(this, ActivityAddGroupPage.class);
-                startActivity(intent);
-                return true;
-            }
+        if (id == R.id.loadNewGroup)
+        {
+            Intent intent = new Intent(this, ActivityAddGroupPage.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
 
-        private ActivityResultLauncher<Intent> storageActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult o) {
+    private ActivityResultLauncher<Intent> storageActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult o) {
                     Log.d(TAG,"onActivityResult: ");
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
                     {
@@ -165,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
                     }else {
 
                     }
-            }
-        });
+                }
+            });
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 if (write&&read)
                 {
                     Log.d(TAG,"Manifest.permission.READ_EXTERNAL_STORAGE");
-                   // createFolder();
+                    // createFolder();
                 }else {
                     Log.d(TAG,"asdadsdsadsa");
                     Toast.makeText(this,"textasdasd",Toast.LENGTH_SHORT).show();

@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <ImageView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:scaleType="fitXY"
         style="@style/FON"/>
+
     <androidx.appcompat.widget.Toolbar
         android:fontFamily="@font/asdsad"
         android:id="@+id/toolbar"
@@ -17,21 +19,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="Информация о группе" />
 
-
-    <TextView
-        android:textSize="16sp"
-        android:fontFamily="@font/asdsad"
-        android:id="@+id/users"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="312dp"
-        android:layout_marginBottom="586dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/textResult"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/asdsad"
+            android:text="Пусто"
+            android:paddingLeft="20dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ScrollView>
 
     <Button
         style="@style/TEXT"
@@ -39,26 +49,24 @@
         android:background="@drawable/back"
         android:fontFamily="@font/asdsad"
         android:id="@+id/button"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="110dp"
-        android:layout_marginBottom="120dp"
         android:text="Выбрать жертву"
         android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
-        android:textStyle="bold"
-        android:fontFamily="@font/asdsad"
         android:id="@+id/textResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:textColor="#F61010"
+        android:fontFamily="@font/asdsad"
+        android:textColor="#AA1919"
         android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
